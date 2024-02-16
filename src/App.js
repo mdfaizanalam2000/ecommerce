@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Homepage from './components/Homepage';
+import Navbar from './components/Navbar';
+const data = require("./products.json")
+
 
 function App() {
+  const [products, setProducts] = useState(data.products)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar products={products} setProducts={setProducts} />
+      <Homepage products={products} />
+    </>
   );
 }
 
