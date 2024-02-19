@@ -29,6 +29,11 @@ const CartModal = ({ cartItems, setCartItems }) => {
         setCartItems(latestCartItems)
     }
 
+    const handleRemoveItem = ({ product }) => {
+        let latestCartItems = cartItems.filter(item => { return item.product.id !== product.id })
+        setCartItems(latestCartItems)
+    }
+
     return (
         <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -53,7 +58,7 @@ const CartModal = ({ cartItems, setCartItems }) => {
                                         <th scope="row">{index + 1}</th>
                                         <td>{item.product.title}</td>
                                         <td><span onClick={() => handleDecreaseQty(item)} className="badge rounded-pill text-bg-warning">-</span> {item.qty} <span onClick={() => handleIncreaseQty(item)} className="badge rounded-pill text-bg-warning">+</span></td>
-                                        <td>₹{item.product.price * item.qty * 84}</td>
+                                        <td>₹{item.product.price * item.qty * 84} <span onClick={() => handleRemoveItem(item)} title='remove item' className="badge rounded-pill text-bg-danger">X</span></td>
                                     </tr>
                                 }) : <tr><td colSpan={4} className='text-center'>Cart is empty</td></tr>}
                             </tbody>
