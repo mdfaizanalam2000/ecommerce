@@ -12,6 +12,10 @@ nav .cart-btn {
   right: 1rem;
 }
 
+.rounded-pill {
+  cursor: pointer;
+}
+
 @media only screen and (max-width:992px) {
   input {
     width: 100% !important;

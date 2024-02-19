@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import CartModal from './CartModal'
 
-const Navbar = ({ products, setProducts }) => {
+const Navbar = ({ products, setProducts, cartItems, setCartItems }) => {
     const allData = require("../products.json")
     const [query, setQuery] = useState("")
 
@@ -32,7 +33,10 @@ const Navbar = ({ products, setProducts }) => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <input name='search' value={query} onChange={handleFilter} className="form-control" type="search" placeholder="Type here to search for specific product..." aria-label="Search" />
                     <div className="cart-btn">
-                        <button className="btn btn-success">Go to cart <i className="bi bi-cart"></i></button>
+                        <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Go to cart <i className="bi bi-cart"></i> <span className="badge text-bg-dark">{cartItems.length}</span>
+                        </button>
+                        <CartModal cartItems={cartItems} setCartItems={setCartItems} />
                     </div>
                 </div>
             </div>
